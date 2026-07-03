@@ -1,0 +1,79 @@
+{
+  "theme_archetype": "Archetype 1: Organic & Earthy (Light Theme)",
+  "design_philosophy": "Editorial, refined, academic, warm. Think of a high-end tutor's boutique brand. The aesthetic should feel trustworthy, experienced, and premium, communicating her 16 years of expertise without feeling like a generic corporate tech product.",
+  "prohibited_elements": [
+    "The word 'Ma\\'am' anywhere on the website",
+    "Displaying the phone number (+91 7986498916) directly on the site",
+    "Purple or teal color palettes",
+    "Inter, Roboto, Open Sans, Lato, or Syne for headings",
+    "Default SaaS templates, heavy glassmorphism, or neon glows",
+    "Center-everything layouts (use asymmetry for editorial feel)"
+  ],
+  "color_palette": {
+    "background_base": "#FDFBF7",
+    "background_alt": "#F4EBE1",
+    "primary": "#1A362D",
+    "accent_warm": "#A45D44",
+    "text_dark": "#1A362D",
+    "text_muted": "#4A5D56",
+    "surface": "#FFFFFF",
+    "border": "rgba(26, 54, 45, 0.15)"
+  },
+  "typography": {
+    "headings": "Cormorant Garamond",
+    "body": "Outfit",
+    "rules": [
+      "Headings must use tight letter spacing (tracking-tighter) to feel editorial",
+      "Body text should have loose line height (leading-relaxed) for readability",
+      "Use explicit contrast in weights: extremely light or bold, avoid medium for headings",
+      "Overlines and tags should be uppercase, tiny, and wide tracking"
+    ]
+  },
+  "spacing_and_layout": {
+    "global_padding": "p-6 md:p-12 lg:p-24",
+    "section_gap": "gap-16 md:gap-32",
+    "strategy": "Generous Spacing Philosophy. Use 2-3x more spacing than standard designs. Embrace negative space. Use overlapping elements for an editorial 'magazine' layout."
+  },
+  "component_guidelines": {
+    "navigation": "Sticky navigation, backdrop-blur-xl bg-[#FDFBF7]/80 (Crystal Glass but warm), 1px bottom border border-[#1A362D]/10. Links: About, Services, Experience, Testimonials, FAQ. Right CTA: 'Book Consultation' mapped to Calendly.",
+    "hero": "Asymmetrical layout. Giant 'Cormorant Garamond' heading: 'Sadhna Dhiman'. Subtitle: 'Academic Communication Specialist'. Primary CTA 'Book a Free Consultation' opens Calendly. Secondary action smooth scrolls to Services. Right side: Use `/images/sadhna.png` with a soft-edged crop or overlapping a warm terracotta background shape.",
+    "about": "Use a two-column grid. Left: A beautifully framed aesthetic library/desk image. Right: Storytelling focus on '16 years of experience'. Highlight key achievements with small elegant callout stats.",
+    "services": "Bento Grid Protocol. Display 8 offerings (IELTS, TOEFL, PTE, CELPIP, Spoken English, Public Speaking, Creative Writing, Language Certification). Use off-white cards bg-white, 1px border border-[#1A362D]/10, and earthy hover states. Go cardless or use subtle rectangles.",
+    "experience": "Vertical editorial timeline. Emphasize 'Planet Spark' and 'LeapScholar'. Show geographical reach: 'US, UK, Canada' using refined typography and perhaps subtle world map watermarks.",
+    "success_stats": "A full-width strip with a deep green background bg-[#1A362D] and ivory text text-[#FDFBF7]. Show metrics like students trained, average bands, etc.",
+    "testimonials": "Editorial 'pull quotes' or a sleek manual carousel. Use large quotation marks in Cormorant Garamond.",
+    "faq": "Shadcn accordion. Customize to remove heavy backgrounds. Use simple 1px bottom borders for each item, expanding with smooth motion.",
+    "contact": "Shadcn Form combined with a final CTA to Calendly. Fields: Name, Email, Target Exam, Message. Note: Form submission does not show the phone number; it only triggers an email. 'Reach out' section includes er.sadhnadhiman@gmail.com and a link to LinkedIn.",
+    "footer": "Massive spacing. Big brand name 'Sadhna Dhiman'. Include LinkedIn link, email link, and copyright."
+  },
+  "motion_and_interactions": {
+    "hover_states": "Buttons should lift slightly -translate-y-1 with a soft earthy shadow. Cards should have their border color transition to primary dark green.",
+    "scroll_effects": "Use mild staggered fade-ins for the Services grid. Subtle parallax for images."
+  },
+  "images": [
+    {
+      "url": "/images/sadhna.png",
+      "category": "hero, about",
+      "description": "Main professional portrait of Sadhna Dhiman (Local file, must be used)."
+    },
+    {
+      "url": "https://images.pexels.com/photos/16088727/pexels-photo-16088727.jpeg",
+      "category": "about, background",
+      "description": "Calm, light-filled workspace featuring books and greenery. Use as contextual image in About section."
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1568667256549-094345857637?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1OTN8MHwxfHNlYXJjaHwxfHxsaWJyYXJ5JTIwYm9va3MlMjBhZXN0aGV0aWN8ZW58MHx8fHwxNzgzMDc2NjIyfDA&ixlib=rb-4.1.0&q=85",
+      "category": "experience, services_bg",
+      "description": "Aesthetic wooden bookshelf. Good for academic atmosphere, use with low opacity."
+    },
+    {
+      "url": "https://images.unsplash.com/photo-1524661135-423995f22d0b?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxOTF8MHwxfHNlYXJjaHwxfHxhYnN0cmFjdCUyMG1hcCUyMHdvcmxkfGVufDB8fHx8MTc4MzA3NjYyM3ww&ixlib=rb-4.1.0&q=85",
+      "category": "experience",
+      "description": "World map background to emphasize US/UK/Canada reach."
+    }
+  ],
+  "testing": {
+    "data_testid_rules": "Every interactive element (buttons, links, form inputs, accordion triggers) MUST have a `data-testid` attribute using kebab-case, role-based naming (e.g., `data-testid=\"book-consultation-hero-btn\"`)."
+  },
+  "instructions_to_main_agent": "Ensure you strictly follow the typography (Cormorant Garamond & Outfit) and color palette. Absolutely NO 'Ma'am' in the text. NO phone number displayed. Connect the main CTA to a Calendly embed or popup. Use purely custom HTML/Tailwind for layout structures to maintain an editorial feel, avoiding default Shadcn card looks. Use Shadcn strictly for interactive logic (Accordion, Form). Remember to use .js files for frontend, not .tsx. Run `yarn add @phosphor-icons/react` or `lucide-react` for icons."
+}
