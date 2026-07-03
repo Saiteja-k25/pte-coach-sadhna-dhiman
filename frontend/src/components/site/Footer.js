@@ -1,47 +1,103 @@
+import { motion } from 'framer-motion';
 import { ArrowUpRight } from 'lucide-react';
 import { testIds } from '@/lib/testIds';
+import { Reveal } from '@/lib/motion';
+
+const marqueeItems = [
+  'IELTS',
+  'TOEFL',
+  'PTE',
+  'CELPIP',
+  'Spoken English',
+  'Public Speaking',
+  'Creative Writing',
+  'Interview Prep',
+  'Study Abroad',
+];
 
 export const Footer = ({ calendlyUrl, contactEmail }) => {
+  const marquee = [...marqueeItems, ...marqueeItems];
   return (
-    <footer className="relative bg-cream border-t border-forest/10">
-      <div className="mx-auto max-w-[1400px] px-6 md:px-10 lg:px-16 pt-20 pb-12">
-        <div className="grid lg:grid-cols-12 gap-12">
+    <footer className="relative bg-sand border-t border-ink/10 overflow-hidden">
+      {/* Marquee band */}
+      <div className="relative border-b border-ink/10 py-6 md:py-8 select-none">
+        <div className="marquee">
+          <div className="marquee-track font-serif italic text-ink/40 text-2xl md:text-4xl whitespace-nowrap">
+            {marquee.map((m, i) => (
+              <span key={i} className="flex items-center gap-8">
+                <span>{m}</span>
+                <span className="text-mocha">✦</span>
+              </span>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="mx-auto max-w-[1400px] px-5 sm:px-8 lg:px-16 pt-16 md:pt-20 pb-10 md:pb-12">
+        <div className="grid lg:grid-cols-12 gap-10 lg:gap-12">
+          {/* Brand block */}
           <div className="lg:col-span-6">
-            <div className="overline">Academic Communication Specialist</div>
-            <h3
-              className="mt-4 font-serif text-forest tracking-tighter leading-[0.95]"
-              style={{ fontSize: 'clamp(3rem, 8vw, 6rem)' }}
-            >
-              Sadhna
-              <br />
-              <em className="font-light text-terracotta">Dhiman.</em>
-            </h3>
-            <p className="mt-6 text-moss max-w-md leading-relaxed">
-              Independent English coaching for the ambitious. Based in Chandigarh, teaching
-              globally.
-            </p>
+            <Reveal>
+              <div className="overline">Academic Communication Specialist</div>
+            </Reveal>
+            <Reveal delay={0.08}>
+              <h3
+                className="mt-4 font-serif text-ink tracking-tighter leading-[0.95]"
+                style={{ fontSize: 'clamp(2.75rem, 9vw, 6.25rem)' }}
+              >
+                Sadhna
+                <br />
+                <em className="font-light text-mocha">Dhiman.</em>
+              </h3>
+            </Reveal>
+            <Reveal delay={0.16}>
+              <p className="mt-5 md:mt-6 text-inkSoft max-w-md leading-relaxed">
+                Independent English coaching for the ambitious. Based in Chandigarh, teaching
+                globally.
+              </p>
+            </Reveal>
+
+            <Reveal delay={0.24}>
+              <motion.button
+                data-testid={testIds.footer.book}
+                onClick={() => window.open(calendlyUrl, '_blank', 'noopener,noreferrer')}
+                whileHover={{ x: 2 }}
+                className="btn-primary mt-8 md:mt-10 group"
+              >
+                <span>Book Consultation</span>
+                <ArrowUpRight size={14} className="group-hover:rotate-45 transition-transform duration-500" />
+              </motion.button>
+            </Reveal>
           </div>
 
-          <div className="lg:col-span-3">
-            <div className="overline text-forest/70">Sections</div>
-            <ul className="mt-5 space-y-3 text-forest/80 text-[14px]">
-              <li><a href="#about" className="link-underline">About</a></li>
-              <li><a href="#services" className="link-underline">Services</a></li>
-              <li><a href="#experience" className="link-underline">Experience</a></li>
-              <li><a href="#testimonials" className="link-underline">Testimonials</a></li>
-              <li><a href="#faq" className="link-underline">FAQ</a></li>
-              <li><a href="#contact" className="link-underline">Contact</a></li>
+          <Reveal delay={0.1} className="lg:col-span-3">
+            <div className="overline text-ink/70">Sections</div>
+            <ul className="mt-5 space-y-3 text-ink/80 text-[14px]">
+              {[
+                ['About', '#about'],
+                ['Services', '#services'],
+                ['Experience', '#experience'],
+                ['Voices', '#testimonials'],
+                ['FAQ', '#faq'],
+                ['Contact', '#contact'],
+              ].map(([label, href]) => (
+                <li key={href}>
+                  <a href={href} className="link-underline">
+                    {label}
+                  </a>
+                </li>
+              ))}
             </ul>
-          </div>
+          </Reveal>
 
-          <div className="lg:col-span-3">
-            <div className="overline text-forest/70">Reach out</div>
-            <ul className="mt-5 space-y-3 text-forest/80 text-[14px]">
+          <Reveal delay={0.15} className="lg:col-span-3">
+            <div className="overline text-ink/70">Reach out</div>
+            <ul className="mt-5 space-y-3 text-ink/80 text-[14px]">
               <li>
                 <a
                   href={`mailto:${contactEmail}`}
                   data-testid={testIds.footer.email}
-                  className="link-underline"
+                  className="link-underline break-all"
                 >
                   {contactEmail}
                 </a>
@@ -57,23 +113,14 @@ export const Footer = ({ calendlyUrl, contactEmail }) => {
                   LinkedIn
                 </a>
               </li>
-              <li className="text-moss/70 text-[13px]">Chandigarh, India</li>
+              <li className="text-inkSoft/80 text-[13px]">Chandigarh, India</li>
             </ul>
-
-            <button
-              data-testid={testIds.footer.book}
-              onClick={() => window.open(calendlyUrl, '_blank', 'noopener,noreferrer')}
-              className="btn-ghost mt-8 text-[11px]"
-            >
-              Book Consultation
-              <ArrowUpRight size={14} />
-            </button>
-          </div>
+          </Reveal>
         </div>
 
-        <div className="mt-20 border-t border-forest/10 pt-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 text-[12px] text-moss">
+        <div className="mt-14 md:mt-20 border-t border-ink/10 pt-6 md:pt-8 flex flex-col md:flex-row items-start md:items-center justify-between gap-3 text-[11px] md:text-[12px] text-inkSoft">
           <div>© {new Date().getFullYear()} Sadhna Dhiman. All rights reserved.</div>
-          <div className="tracking-widest uppercase">Crafted with care · India</div>
+          <div className="tracking-[0.28em] uppercase">Crafted with care · India</div>
         </div>
       </div>
     </footer>

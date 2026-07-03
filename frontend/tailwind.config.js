@@ -12,13 +12,15 @@ module.exports = {
         sans: ['Outfit', 'system-ui', 'sans-serif'],
       },
       colors: {
-        cream: '#FDFBF7',
-        creamAlt: '#F4EBE1',
-        forest: '#1A362D',
-        forestSoft: '#234a3e',
-        terracotta: '#A45D44',
-        moss: '#4A5D56',
-        border: 'rgba(26, 54, 45, 0.15)',
+        // Palette anchored to the LinkedIn banner
+        sand: '#EFE3D2',
+        ivory: '#FBF5EC',
+        tan: '#D9C4A5',
+        ink: '#1B1712',
+        inkSoft: '#5A4E3F',
+        mocha: '#8B6F4E',
+        plum: '#5E2F3D',
+        border: 'rgba(27, 23, 18, 0.15)',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
         card: {
@@ -30,27 +32,27 @@ module.exports = {
           foreground: 'hsl(var(--popover-foreground))'
         },
         primary: {
-          DEFAULT: '#1A362D',
-          foreground: '#FDFBF7'
+          DEFAULT: '#1B1712',
+          foreground: '#FBF5EC'
         },
         secondary: {
-          DEFAULT: '#F4EBE1',
-          foreground: '#1A362D'
+          DEFAULT: '#D9C4A5',
+          foreground: '#1B1712'
         },
         muted: {
-          DEFAULT: '#F4EBE1',
-          foreground: '#4A5D56'
+          DEFAULT: '#D9C4A5',
+          foreground: '#5A4E3F'
         },
         accent: {
-          DEFAULT: '#A45D44',
-          foreground: '#FDFBF7'
+          DEFAULT: '#8B6F4E',
+          foreground: '#FBF5EC'
         },
         destructive: {
           DEFAULT: 'hsl(var(--destructive))',
           foreground: 'hsl(var(--destructive-foreground))'
         },
-        input: 'rgba(26, 54, 45, 0.2)',
-        ring: '#1A362D',
+        input: 'rgba(27, 23, 18, 0.2)',
+        ring: '#1B1712',
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -68,8 +70,8 @@ module.exports = {
         }
       },
       animation: {
-        'accordion-down': 'accordion-down 0.25s ease-out',
-        'accordion-up': 'accordion-up 0.25s ease-out'
+        'accordion-down': 'accordion-down 0.35s cubic-bezier(0.7, 0, 0.15, 1)',
+        'accordion-up': 'accordion-up 0.35s cubic-bezier(0.7, 0, 0.15, 1)'
       }
     }
   },

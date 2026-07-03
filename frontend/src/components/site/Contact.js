@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import { motion } from 'framer-motion';
 import { toast } from 'sonner';
 import {
   Select,
@@ -10,7 +11,7 @@ import {
 } from '@/components/ui/select';
 import { Mail, ArrowUpRight, CheckCircle2, Linkedin } from 'lucide-react';
 import { testIds } from '@/lib/testIds';
-import { useReveal } from '@/hooks/useReveal';
+import { Reveal } from '@/lib/motion';
 
 const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
 
@@ -26,7 +27,6 @@ const exams = [
 ];
 
 export const Contact = ({ calendlyUrl, contactEmail }) => {
-  const ref = useReveal();
   const [form, setForm] = useState({ name: '', email: '', target_exam: '', message: '' });
   const [loading, setLoading] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -62,71 +62,92 @@ export const Contact = ({ calendlyUrl, contactEmail }) => {
   }, [submitted]);
 
   return (
-    <section id="contact" className="relative py-24 md:py-36 bg-forest text-cream overflow-hidden">
-      <div aria-hidden className="absolute inset-0 grain opacity-30" />
-      <div
+    <section id="contact" className="relative py-20 md:py-32 lg:py-40 bg-ink text-ivory overflow-hidden">
+      <div aria-hidden className="absolute inset-0 grain opacity-40" />
+      <motion.div
         aria-hidden
-        className="absolute -bottom-32 -left-32 w-[500px] h-[500px] rounded-full opacity-30 pointer-events-none"
-        style={{ background: 'radial-gradient(closest-side, #A45D44, transparent 70%)' }}
+        className="absolute -bottom-40 -left-40 w-[520px] h-[520px] rounded-full pointer-events-none"
+        style={{ background: 'radial-gradient(closest-side, #8B6F4E, transparent 70%)' }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 0.35 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 1.8 }}
       />
-      <div ref={ref} className="reveal relative mx-auto max-w-[1400px] px-6 md:px-10 lg:px-16 grid lg:grid-cols-12 gap-16">
+      <motion.div
+        aria-hidden
+        className="absolute -top-32 -right-32 w-[420px] h-[420px] rounded-full pointer-events-none"
+        style={{ background: 'radial-gradient(closest-side, #5E2F3D, transparent 70%)' }}
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 0.25 }}
+        viewport={{ once: true, amount: 0.3 }}
+        transition={{ duration: 1.8, delay: 0.2 }}
+      />
+
+      <div className="relative mx-auto max-w-[1400px] px-5 sm:px-8 lg:px-16 grid lg:grid-cols-12 gap-12 lg:gap-16">
         {/* LEFT — pitch */}
         <div className="lg:col-span-5">
-          <div className="overline text-cream/60">Reach out</div>
-          <h2 className="mt-4 font-serif text-4xl md:text-5xl lg:text-6xl tracking-tighter leading-[1.05]">
-            Let&rsquo;s map out
-            <br />
-            <em className="font-light text-terracotta">your path.</em>
-          </h2>
-          <p className="mt-6 text-cream/75 leading-[1.85] max-w-md">
-            Book a complimentary 20-minute consultation to discuss your target exam, timeline
-            and current strengths. Or send a note — every message is read and replied to
-            personally.
-          </p>
-
-          <button
-            data-testid={testIds.contact.calendlyBtn}
-            onClick={openCalendly}
-            className="mt-10 inline-flex items-center gap-2 bg-cream text-forest px-7 py-4 text-[13px] tracking-[0.15em] uppercase font-medium hover:bg-terracotta hover:text-cream transition-all"
-          >
-            Book on Calendly
-            <ArrowUpRight size={16} />
-          </button>
-
-          <div className="mt-14 border-t border-cream/15 pt-8 space-y-4 text-cream/80">
-            <a
-              href={`mailto:${contactEmail}`}
-              className="flex items-center gap-3 group"
-            >
-              <Mail size={18} className="text-terracotta" />
-              <span className="link-underline">{contactEmail}</span>
-            </a>
-            <a
-              href="https://www.linkedin.com/in/sadhna-dhiman-025151ba/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-3 group"
-            >
-              <Linkedin size={18} className="text-terracotta" />
-              <span className="link-underline">LinkedIn Profile</span>
-            </a>
-            <p className="text-[13px] text-cream/60 pt-2 max-w-sm">
-              Direct phone details are shared privately once you confirm a booking or submit
-              an enquiry.
+          <Reveal>
+            <div className="overline text-ivory/60">Reach out</div>
+          </Reveal>
+          <Reveal delay={0.08}>
+            <h2 className="mt-4 font-serif text-[2.4rem] sm:text-5xl lg:text-6xl tracking-tighter leading-[1.02] text-ivory">
+              Let&rsquo;s map out
+              <br />
+              <em className="font-light text-mocha">your path.</em>
+            </h2>
+          </Reveal>
+          <Reveal delay={0.16}>
+            <p className="mt-6 text-ivory/75 leading-[1.85] max-w-md">
+              Book a complimentary 20-minute consultation to discuss your target exam, timeline
+              and current strengths. Or send a note — every message is read and replied to
+              personally.
             </p>
-          </div>
+          </Reveal>
+
+          <Reveal delay={0.24}>
+            <button
+              data-testid={testIds.contact.calendlyBtn}
+              onClick={openCalendly}
+              className="mt-9 md:mt-10 inline-flex items-center gap-2 bg-ivory text-ink px-6 md:px-7 py-3.5 md:py-4 text-[12px] md:text-[13px] tracking-[0.15em] uppercase font-medium hover:bg-mocha hover:text-ivory transition-all duration-500 group"
+            >
+              Book on Calendly
+              <ArrowUpRight size={16} className="group-hover:rotate-45 transition-transform duration-500" />
+            </button>
+          </Reveal>
+
+          <Reveal delay={0.32}>
+            <div className="mt-12 md:mt-14 border-t border-ivory/15 pt-7 md:pt-8 space-y-4 text-ivory/85">
+              <a href={`mailto:${contactEmail}`} className="flex items-center gap-3 group">
+                <Mail size={18} className="text-mocha" />
+                <span className="link-underline break-all">{contactEmail}</span>
+              </a>
+              <a
+                href="https://www.linkedin.com/in/sadhna-dhiman-025151ba/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 group"
+              >
+                <Linkedin size={18} className="text-mocha" />
+                <span className="link-underline">LinkedIn Profile</span>
+              </a>
+              <p className="text-[13px] text-ivory/60 pt-2 max-w-sm">
+                Direct phone details are shared privately once you confirm a booking or submit
+                an enquiry.
+              </p>
+            </div>
+          </Reveal>
         </div>
 
         {/* RIGHT — form */}
-        <div className="lg:col-span-7">
+        <Reveal delay={0.2} className="lg:col-span-7">
           <form
             data-testid={testIds.contact.form}
             onSubmit={submit}
-            className="bg-cream text-forest p-8 md:p-12 space-y-6"
+            className="bg-sand text-ink p-7 md:p-10 lg:p-12 space-y-5 md:space-y-6"
           >
-            <div className="grid md:grid-cols-2 gap-6">
+            <div className="grid md:grid-cols-2 gap-5 md:gap-6">
               <label className="block">
-                <span className="overline text-forest/70">Your name</span>
+                <span className="overline text-ink/70">Your name</span>
                 <input
                   data-testid={testIds.contact.name}
                   type="text"
@@ -134,11 +155,11 @@ export const Contact = ({ calendlyUrl, contactEmail }) => {
                   onChange={onChange('name')}
                   required
                   placeholder="Full name"
-                  className="mt-3 w-full bg-transparent border-b border-forest/25 py-3 focus:border-terracotta focus:outline-none placeholder-forest/30 text-forest"
+                  className="mt-3 w-full bg-transparent border-b border-ink/25 py-3 focus:border-mocha focus:outline-none placeholder-ink/30 text-ink transition-colors"
                 />
               </label>
               <label className="block">
-                <span className="overline text-forest/70">Email</span>
+                <span className="overline text-ink/70">Email</span>
                 <input
                   data-testid={testIds.contact.email}
                   type="email"
@@ -146,13 +167,13 @@ export const Contact = ({ calendlyUrl, contactEmail }) => {
                   onChange={onChange('email')}
                   required
                   placeholder="you@example.com"
-                  className="mt-3 w-full bg-transparent border-b border-forest/25 py-3 focus:border-terracotta focus:outline-none placeholder-forest/30 text-forest"
+                  className="mt-3 w-full bg-transparent border-b border-ink/25 py-3 focus:border-mocha focus:outline-none placeholder-ink/30 text-ink transition-colors"
                 />
               </label>
             </div>
 
             <div>
-              <span className="overline text-forest/70">Target exam or focus</span>
+              <span className="overline text-ink/70">Target exam or focus</span>
               <div className="mt-3">
                 <Select
                   value={form.target_exam}
@@ -160,11 +181,11 @@ export const Contact = ({ calendlyUrl, contactEmail }) => {
                 >
                   <SelectTrigger
                     data-testid={testIds.contact.exam}
-                    className="w-full rounded-none border-0 border-b border-forest/25 focus:border-terracotta focus:ring-0 bg-transparent px-0 py-3 text-forest h-auto"
+                    className="w-full rounded-none border-0 border-b border-ink/25 focus:border-mocha focus:ring-0 bg-transparent px-0 py-3 text-ink h-auto"
                   >
                     <SelectValue placeholder="Choose one" />
                   </SelectTrigger>
-                  <SelectContent className="bg-cream border-forest/15">
+                  <SelectContent className="bg-sand border-ink/15">
                     {exams.map((e) => (
                       <SelectItem key={e} value={e} data-testid={`exam-option-${e}`}>
                         {e}
@@ -176,7 +197,7 @@ export const Contact = ({ calendlyUrl, contactEmail }) => {
             </div>
 
             <label className="block">
-              <span className="overline text-forest/70">A short message</span>
+              <span className="overline text-ink/70">A short message</span>
               <textarea
                 data-testid={testIds.contact.message}
                 value={form.message}
@@ -184,32 +205,34 @@ export const Contact = ({ calendlyUrl, contactEmail }) => {
                 required
                 rows={5}
                 placeholder="Where you are today, where you want to be, when you'd like to start…"
-                className="mt-3 w-full bg-transparent border-b border-forest/25 py-3 focus:border-terracotta focus:outline-none resize-none placeholder-forest/30 text-forest"
+                className="mt-3 w-full bg-transparent border-b border-ink/25 py-3 focus:border-mocha focus:outline-none resize-none placeholder-ink/30 text-ink transition-colors"
               />
             </label>
 
-            <div className="flex flex-col md:flex-row md:items-center gap-4 pt-4">
+            <div className="flex flex-col md:flex-row md:items-center gap-4 pt-2 md:pt-4">
               <button
                 type="submit"
                 data-testid={testIds.contact.submit}
                 disabled={loading}
-                className="btn-primary disabled:opacity-60 disabled:cursor-not-allowed"
+                className="btn-primary disabled:opacity-60 disabled:cursor-not-allowed w-full md:w-auto justify-center"
               >
-                {loading ? 'Sending…' : 'Send Enquiry'}
+                <span>{loading ? 'Sending…' : 'Send Enquiry'}</span>
                 <ArrowUpRight size={16} />
               </button>
               {submitted && (
-                <div
+                <motion.div
                   data-testid={testIds.contact.success}
-                  className="flex items-center gap-2 text-forest text-sm"
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="flex items-center gap-2 text-ink text-sm"
                 >
-                  <CheckCircle2 size={18} className="text-terracotta" />
+                  <CheckCircle2 size={18} className="text-mocha" />
                   Reply will land in your inbox shortly.
-                </div>
+                </motion.div>
               )}
             </div>
           </form>
-        </div>
+        </Reveal>
       </div>
     </section>
   );

@@ -3,6 +3,7 @@ import axios from 'axios';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Toaster } from '@/components/ui/sonner';
 
+import { PageTransition } from '@/components/site/PageTransition';
 import { Navbar } from '@/components/site/Navbar';
 import { Hero } from '@/components/site/Hero';
 import { About } from '@/components/site/About';
@@ -28,28 +29,28 @@ const Landing = () => {
     axios
       .get(`${API}/config`)
       .then((r) => setCfg(r.data))
-      .catch(() => {
-        /* keep defaults */
-      });
+      .catch(() => {});
     document.title = 'Sadhna Dhiman — Academic Communication Specialist';
   }, []);
 
   return (
-    <div className="min-h-screen bg-cream text-forest">
-      <Navbar calendlyUrl={cfg.calendly_url} />
-      <main>
-        <Hero calendlyUrl={cfg.calendly_url} />
-        <About />
-        <Services calendlyUrl={cfg.calendly_url} />
-        <Experience />
-        <Stats />
-        <Testimonials />
-        <FAQ />
-        <Contact calendlyUrl={cfg.calendly_url} contactEmail={cfg.contact_email} />
-      </main>
-      <Footer calendlyUrl={cfg.calendly_url} contactEmail={cfg.contact_email} />
-      <Toaster position="top-right" richColors />
-    </div>
+    <PageTransition>
+      <div className="min-h-screen bg-sand text-ink">
+        <Navbar calendlyUrl={cfg.calendly_url} />
+        <main>
+          <Hero calendlyUrl={cfg.calendly_url} />
+          <About />
+          <Services calendlyUrl={cfg.calendly_url} />
+          <Experience />
+          <Stats />
+          <Testimonials />
+          <FAQ />
+          <Contact calendlyUrl={cfg.calendly_url} contactEmail={cfg.contact_email} />
+        </main>
+        <Footer calendlyUrl={cfg.calendly_url} contactEmail={cfg.contact_email} />
+        <Toaster position="top-right" richColors />
+      </div>
+    </PageTransition>
   );
 };
 
