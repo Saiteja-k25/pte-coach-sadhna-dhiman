@@ -21,7 +21,7 @@ The site is designed to convert visitors into consultation bookings via a Calend
 
 ## Features
 
-- **Editorial hero** with a portrait cleaned via Google Nano Banana image-editing (green LinkedIn `#OPENTOWORK` ribbon removed).
+- **Editorial hero** with a portrait cleaned via Google Nano Banana image-editing.
 - **8-service bento grid** for IELTS, TOEFL, PTE, CELPIP, Spoken English, Public Speaking, Creative Writing, and Language Certification.
 - **Experience timeline** with animated draw-in of the vertical rail.
 - **Animated success stats** with scroll-triggered count-up numbers.
